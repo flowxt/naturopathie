@@ -163,11 +163,13 @@ export default function SalonGallery() {
                   onClick={() => setActiveImage(index)}
                   className={`relative flex-1 aspect-[4/3] rounded-xl overflow-hidden transition-all ${
                     activeImage === index
-                      ? "ring-3 ring-offset-2 scale-100"
+                      ? "scale-100"
                       : "opacity-60 hover:opacity-100"
                   }`}
                   style={{
-                    ringColor: activeImage === index ? "var(--terracotta)" : "transparent",
+                    boxShadow: activeImage === index 
+                      ? "0 0 0 3px var(--terracotta), 0 0 0 5px var(--blanc-creme)" 
+                      : "none",
                   }}
                   aria-label={`Voir ${image.alt}`}
                 >
