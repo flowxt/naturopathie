@@ -70,17 +70,18 @@ export default function AboutPreview() {
               style={{ color: "var(--texte-secondaire)" }}
             >
               <p>
-                Je m&apos;appelle Dorothée, j&apos;ai 35 ans et je suis énergéticienne et naturopathe.
+                Je m&apos;appelle Dorothée, j&apos;ai 35 ans et, depuis mon plus jeune âge, 
+                je suis accompagnée par des naturopathes, énergéticiens, magnétiseurs et guérisseurs.
               </p>
               <p>
-                Ma mission est de vous accompagner à travers une approche holistique, 
-                prenant en compte le corps, l&apos;esprit, les émotions et l&apos;énergie, 
-                dans une profonde bienveillance et écoute de l&apos;âme.
+                Ces expériences ont profondément nourri mon propre cheminement vers le bien-être. 
+                Au fil des années, j&apos;ai compris et accepté que ma véritable essence était, 
+                à mon tour, d&apos;accompagner ceux qui le souhaitent vers leur équilibre intérieur.
               </p>
               <p>
-                Chaque accompagnement est personnalisé et respectueux de votre rythme, 
-                avec pour intention de vous guider vers plus d&apos;équilibre, de vitalité 
-                et d&apos;harmonie intérieure.
+                Aujourd&apos;hui, j&apos;accompagne mes consultants à travers des séances 
+                individuelles personnalisées, conçues pour dénouer des blocages profonds 
+                et apaiser les tensions.
               </p>
             </div>
 

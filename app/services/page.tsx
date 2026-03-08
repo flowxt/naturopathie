@@ -16,7 +16,7 @@ export default function ServicesPage() {
       subtitle: "En présentiel ou à distance",
       image: "/energie.jpg",
       description:
-        "Le soin énergétique est une pratique holistique qui vise à instaurer un rééquilibrage énergétique complet dans tout le corps. Il permet de lever tous les verrous (dénouer les nœuds, blocages et stress au niveau physique, psychique et émotionnel) pour faciliter la circulation de l'énergie d'elle-même.",
+        "Le soin énergétique est une pratique holistique qui vise à instaurer un rééquilibrage énergétique complet. Il permet de lever tous les verrous (dénouer les nœuds, blocages et stress au niveau physique, psychique et émotionnel) pour faciliter la circulation de l'énergie d'elle-même.",
       benefits: [
         "Rééquilibrage des chakras",
         "Libération des blocages émotionnels",
@@ -25,13 +25,21 @@ export default function ServicesPage() {
         "Meilleure circulation de l'énergie vitale",
         "Apaisement mental et émotionnel",
       ],
+      whyConsult: [
+        "Fatigue inexpliquée",
+        "Stress et émotions",
+        "Périodes de transition",
+        "Troubles légers",
+        "Développement personnel",
+      ],
+      whyTitle: "Pour quelle raison consulter un énergéticien ?",
       duration: "Environ 1h30",
       price: "70€",
       color: "terracotta",
     },
     {
       title: "Naturopathie",
-      subtitle: "En visioconférence ou présentiel",
+      subtitle: "En visioconférence ou en présentiel",
       image: "/naturopathie.jpg",
       description:
         "La naturopathie est un ensemble de méthodes de soins visant à renforcer les défenses de l'organisme par des moyens considérés comme naturels et biologiques. Un accompagnement personnalisé et respectueux de votre rythme.",
@@ -43,6 +51,15 @@ export default function ServicesPage() {
         "Gestion du stress naturelle",
         "Renforcement du système immunitaire",
       ],
+      whyConsult: [
+        "Immunité",
+        "Fatigue et troubles du sommeil",
+        "Stress et troubles émotionnels légers",
+        "Problèmes liés au mode de vie",
+        "Troubles digestifs",
+        "Troubles hormonaux",
+      ],
+      whyTitle: "Pourquoi consulter un naturopathe ?",
       duration: "Environ 1h30",
       price: "70€",
       color: "vert",
@@ -61,6 +78,8 @@ export default function ServicesPage() {
         "Conseils pour les parents",
         "Suivi personnalisé",
       ],
+      whyConsult: [],
+      whyTitle: "",
       duration: "Environ 1h",
       price: "50€",
       color: "beige",
@@ -109,117 +128,184 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="space-y-24">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Image */}
-                <div className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                    />
+              <div key={index}>
+                <div
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Image */}
+                  <div className={`relative ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: service.color === "terracotta"
+                            ? "linear-gradient(180deg, transparent 50%, rgba(183, 116, 88, 0.3) 100%)"
+                            : service.color === "vert"
+                            ? "linear-gradient(180deg, transparent 50%, rgba(90, 107, 79, 0.3) 100%)"
+                            : "linear-gradient(180deg, transparent 50%, rgba(212, 184, 150, 0.3) 100%)",
+                        }}
+                      />
+                    </div>
+
+                    {/* Price tag */}
                     <div
-                      className="absolute inset-0"
+                      className="absolute -top-4 -right-4 px-6 py-4 rounded-2xl shadow-xl"
                       style={{
                         background: service.color === "terracotta"
-                          ? "linear-gradient(180deg, transparent 50%, rgba(183, 116, 88, 0.3) 100%)"
+                          ? "linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%)"
                           : service.color === "vert"
-                          ? "linear-gradient(180deg, transparent 50%, rgba(90, 107, 79, 0.3) 100%)"
-                          : "linear-gradient(180deg, transparent 50%, rgba(212, 184, 150, 0.3) 100%)",
+                          ? "linear-gradient(135deg, var(--vert-sauge) 0%, var(--vert-olive) 100%)"
+                          : "linear-gradient(135deg, var(--beige-dore) 0%, var(--terracotta-light) 100%)",
                       }}
-                    />
-                  </div>
-
-                  {/* Price tag */}
-                  <div
-                    className="absolute -top-4 -right-4 px-6 py-4 rounded-2xl shadow-xl"
-                    style={{
-                      background: service.color === "terracotta"
-                        ? "linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%)"
-                        : service.color === "vert"
-                        ? "linear-gradient(135deg, var(--vert-sauge) 0%, var(--vert-olive) 100%)"
-                        : "linear-gradient(135deg, var(--beige-dore) 0%, var(--terracotta-light) 100%)",
-                    }}
-                  >
-                    <div className="text-white text-center">
-                      <div className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                        {service.price}
+                    >
+                      <div className="text-white text-center">
+                        <div className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                          {service.price}
+                        </div>
+                        <div className="text-xs opacity-80">{service.duration}</div>
                       </div>
-                      <div className="text-xs opacity-80">{service.duration}</div>
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className="mb-4">
-                    <h2
-                      className="text-3xl md:text-4xl font-medium"
+                  {/* Content */}
+                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                    <div className="mb-4">
+                      <h2
+                        className="text-3xl md:text-4xl font-medium"
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          color: "var(--texte-principal)",
+                        }}
+                      >
+                        {service.title}
+                      </h2>
+                      <p className="text-sm mt-1" style={{ color: "var(--terracotta)" }}>
+                        {service.subtitle}
+                      </p>
+                    </div>
+
+                    <p
+                      className="text-lg mb-6"
+                      style={{ color: "var(--texte-secondaire)" }}
+                    >
+                      {service.description}
+                    </p>
+
+                    {/* Benefits */}
+                    <h3
+                      className="text-xl font-medium mb-4"
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--texte-principal)",
                       }}
                     >
-                      {service.title}
-                    </h2>
-                    <p className="text-sm mt-1" style={{ color: "var(--terracotta)" }}>
-                      {service.subtitle}
-                    </p>
+                      Bienfaits
+                    </h3>
+                    <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+                      {service.benefits.map((benefit, bIndex) => (
+                        <li
+                          key={bIndex}
+                          className="flex items-start gap-2"
+                          style={{ color: "var(--texte-principal)" }}
+                        >
+                          <span
+                            className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs mt-0.5 shrink-0"
+                            style={{
+                              background: service.color === "terracotta"
+                                ? "var(--terracotta)"
+                                : service.color === "vert"
+                                ? "var(--vert-olive)"
+                                : "var(--beige-dore)",
+                            }}
+                          >
+                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span className="text-sm">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link href="/reservation" className="btn-primary">
+                      Réserver cette séance
+                    </Link>
                   </div>
+                </div>
 
-                  <p
-                    className="text-lg mb-6"
-                    style={{ color: "var(--texte-secondaire)" }}
-                  >
-                    {service.description}
-                  </p>
-
-                  {/* Benefits */}
-                  <h3
-                    className="text-xl font-medium mb-4"
+                {/* Why Consult Section */}
+                {service.whyConsult.length > 0 && (
+                  <div
+                    className="mt-12 rounded-3xl p-8 md:p-10"
                     style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "var(--texte-principal)",
+                      background: service.color === "terracotta"
+                        ? "linear-gradient(145deg, white 0%, var(--beige-clair) 100%)"
+                        : "linear-gradient(145deg, white 0%, var(--beige-clair) 100%)",
+                      boxShadow: "0 4px 20px rgba(183, 116, 88, 0.08)",
                     }}
                   >
-                    Bienfaits
-                  </h3>
-                  <ul className="grid sm:grid-cols-2 gap-3 mb-8">
-                    {service.benefits.map((benefit, bIndex) => (
-                      <li
-                        key={bIndex}
-                        className="flex items-start gap-2"
-                        style={{ color: "var(--texte-principal)" }}
-                      >
-                        <span
-                          className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs mt-0.5 flex-shrink-0"
+                    <h3
+                      className="text-2xl md:text-3xl font-medium mb-6 text-center"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--texte-principal)",
+                      }}
+                    >
+                      {service.whyTitle}
+                    </h3>
+
+                    <div className="flex flex-wrap justify-center gap-3 mb-8">
+                      {service.whyConsult.map((reason, rIndex) => (
+                        <div
+                          key={rIndex}
+                          className="flex items-center gap-2 px-5 py-3 rounded-full"
                           style={{
-                            background: service.color === "terracotta"
-                              ? "var(--terracotta)"
-                              : service.color === "vert"
-                              ? "var(--vert-olive)"
-                              : "var(--beige-dore)",
+                            background: "white",
+                            border: `1.5px solid ${service.color === "terracotta" ? "var(--terracotta-light)" : "var(--vert-clair)"}`,
                           }}
                         >
-                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </span>
-                        <span className="text-sm">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
+                          <div
+                            className="w-2 h-2 rounded-full shrink-0"
+                            style={{
+                              background: service.color === "terracotta"
+                                ? "var(--terracotta)"
+                                : "var(--vert-olive)",
+                            }}
+                          />
+                          <span
+                            className="text-sm font-medium"
+                            style={{ color: "var(--texte-principal)" }}
+                          >
+                            {reason}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
 
-                  <Link href="/reservation" className="btn-primary">
-                    Réserver cette séance
-                  </Link>
-                </div>
+                    <p
+                      className="text-center text-sm italic"
+                      style={{ color: "var(--texte-secondaire)" }}
+                    >
+                      Cette liste est non exhaustive. N&apos;hésitez pas à{" "}
+                      <Link
+                        href="/contact"
+                        className="underline"
+                        style={{ color: "var(--terracotta)" }}
+                      >
+                        me contacter
+                      </Link>{" "}
+                      si vous souhaitez échanger sur vos maux.
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

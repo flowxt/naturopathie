@@ -43,19 +43,19 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14 group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="relative w-16 h-16 lg:w-20 lg:h-20 group-hover:scale-105 transition-transform">
               <Image
                 src="/logo.jpg"
                 alt="L'Expression de l'Âme"
                 fill
-                className="object-contain"
+                className="object-contain rounded-full"
                 priority
               />
             </div>
             <div className="hidden sm:block">
               <span
-                className="text-xl font-medium block"
+                className="text-2xl lg:text-3xl font-medium block leading-tight"
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: "var(--texte-principal)",
@@ -64,7 +64,7 @@ export default function Header() {
                 L&apos;Expression de l&apos;Âme
               </span>
               <span
-                className="text-xs tracking-widest uppercase"
+                className="text-sm tracking-widest uppercase"
                 style={{ color: "var(--terracotta)" }}
               >
                 Soins Énergétiques & Naturopathie

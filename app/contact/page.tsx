@@ -69,8 +69,8 @@ export default function ContactPage() {
             className="mt-6 text-lg max-w-2xl mx-auto"
             style={{ color: "var(--texte-secondaire)" }}
           >
-            Prête à commencer votre voyage vers le bien-être ? 
-            Je serais ravie d&apos;échanger avec vous.
+            Vous souhaitez débuter votre voyage vers le bien-être et la paix intérieure ? 
+            Je serais ravie d&apos;échanger avec vous et de répondre à vos interrogations.
           </p>
         </div>
       </section>

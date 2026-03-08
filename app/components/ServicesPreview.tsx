@@ -6,7 +6,7 @@ export default function ServicesPreview() {
     {
       title: "Soins Énergétiques",
       description:
-        "Le soin énergétique vise à instaurer un rééquilibrage énergétique complet dans tout le corps, levant les verrous et facilitant la circulation de l'énergie.",
+        "Le soin énergétique vise à instaurer un rééquilibrage énergétique complet, levant les verrous et facilitant la circulation de l'énergie.",
       image: "/energie.jpg",
       color: "terracotta",
     },
@@ -76,43 +76,17 @@ export default function ServicesPreview() {
                   className="absolute inset-0"
                   style={{
                     background: service.color === "terracotta"
-                      ? "linear-gradient(180deg, transparent 0%, rgba(183, 116, 88, 0.7) 100%)"
-                      : "linear-gradient(180deg, transparent 0%, rgba(90, 107, 79, 0.7) 100%)",
+                      ? "linear-gradient(180deg, transparent 40%, rgba(183, 116, 88, 0.6) 100%)"
+                      : "linear-gradient(180deg, transparent 40%, rgba(90, 107, 79, 0.6) 100%)",
                   }}
                 />
                 <div className="absolute bottom-6 left-6">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: service.color === "terracotta"
-                        ? "rgba(255, 255, 255, 0.2)"
-                        : "rgba(255, 255, 255, 0.2)",
-                      backdropFilter: "blur(10px)",
-                    }}
+                  <span
+                    className="text-white text-lg font-medium"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem" }}
                   >
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      {service.color === "terracotta" ? (
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                        />
-                      ) : (
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      )}
-                    </svg>
-                  </div>
+                    {service.title}
+                  </span>
                 </div>
               </div>
 

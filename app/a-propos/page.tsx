@@ -50,9 +50,9 @@ export default function AboutPage() {
       {/* Main About Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
             {/* Image */}
-            <div className="relative">
+            <div className="relative lg:sticky lg:top-28">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/foret.png"
@@ -97,7 +97,7 @@ export default function AboutPage() {
                   color: "var(--texte-principal)",
                 }}
               >
-                Ma mission
+                Mon parcours
               </h2>
               <div className="section-divider mb-8" style={{ marginLeft: 0 }} />
 
@@ -106,22 +106,59 @@ export default function AboutPage() {
                 style={{ color: "var(--texte-secondaire)" }}
               >
                 <p>
-                  Je m&apos;appelle Dorothée, j&apos;ai 35 ans et je suis énergéticienne et naturopathe.
+                  Je m&apos;appelle Dorothée, j&apos;ai 35 ans et, depuis mon plus jeune âge, 
+                  je suis accompagnée par des naturopathes, énergéticiens, magnétiseurs et guérisseurs.
                 </p>
                 <p>
-                  Ma mission est d&apos;accompagner mes consultants à travers une approche holistique, 
-                  prenant en compte le corps, l&apos;esprit, les émotions et l&apos;énergie, dans une 
-                  profonde bienveillance et écoute de l&apos;âme.
+                  Ces expériences ont profondément nourri mon propre cheminement vers le bien-être. 
+                  Au fil des années, j&apos;ai compris et accepté que ma véritable essence était, 
+                  à mon tour, d&apos;accompagner ceux qui le souhaitent vers leur équilibre intérieur.
                 </p>
                 <p>
-                  Chaque accompagnement est personnalisé et respectueux de votre rythme, avec pour 
-                  intention de vous guider vers plus d&apos;équilibre, de vitalité et d&apos;harmonie intérieure.
+                  J&apos;ai découvert que je pouvais soulager des maux physiques et émotionnels 
+                  grâce aux soins énergétiques. Cette prise de conscience m&apos;a naturellement 
+                  conduite à me former en naturopathie, afin d&apos;allier approche énergétique et 
+                  compréhension globale du corps.
                 </p>
                 <p>
-                  Je crois profondément que chacun possède en lui les ressources nécessaires pour 
-                  retrouver son équilibre naturel. Mon rôle est de vous accompagner dans cette 
-                  reconnexion à vous-même, en utilisant des méthodes douces et naturelles.
+                  Aujourd&apos;hui, j&apos;accompagne mes consultants à travers des séances 
+                  individuelles personnalisées, conçues pour dénouer des blocages profonds, apaiser 
+                  les tensions et mettre en lumière les déséquilibres à l&apos;origine de vos difficultés.
                 </p>
+              </div>
+
+              {/* Mission */}
+              <div
+                className="mt-10 rounded-2xl p-8"
+                style={{
+                  background: "linear-gradient(145deg, white 0%, var(--beige-clair) 100%)",
+                  boxShadow: "0 4px 20px rgba(183, 116, 88, 0.08)",
+                }}
+              >
+                <h3
+                  className="text-2xl font-medium mb-4"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "var(--texte-principal)",
+                  }}
+                >
+                  Ma mission
+                </h3>
+                <div
+                  className="space-y-4 text-base"
+                  style={{ color: "var(--texte-secondaire)" }}
+                >
+                  <p>
+                    Chaque accompagnement est respectueux de votre rythme, de votre histoire 
+                    et de vos besoins. Mon intention est de vous guider vers plus d&apos;équilibre, 
+                    de vitalité et d&apos;harmonie intérieure.
+                  </p>
+                  <p>
+                    Je crois profondément que chacun porte en lui les ressources nécessaires pour 
+                    retrouver son équilibre naturel. Mon rôle est de vous aider à vous reconnecter 
+                    à cette force intérieure, grâce à des méthodes douces et naturelles.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -292,7 +329,7 @@ export default function AboutPage() {
                 style={{ color: "var(--texte-secondaire)" }}
               >
                 Le soin énergétique est une pratique holistique qui vise à instaurer un 
-                rééquilibrage énergétique complet dans tout le corps. Il permet de lever tous 
+                rééquilibrage énergétique complet. Il permet de lever tous 
                 les verrous (dénouer les nœuds, blocages et stress au niveau physique, psychique 
                 et émotionnel) pour faciliter la circulation de l&apos;énergie d&apos;elle-même.
               </p>
@@ -373,7 +410,7 @@ export default function AboutPage() {
                 className="text-lg"
                 style={{ color: "var(--texte-secondaire)" }}
               >
-                Les séances peuvent également se dérouler <strong>à distance</strong> 
+                Les séances peuvent également se dérouler <strong>à distance</strong>{" "}
                 (visioconférence pour la naturopathie, distance pour les soins énergétiques).
               </p>
             </div>

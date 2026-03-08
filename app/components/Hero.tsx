@@ -63,7 +63,8 @@ export default function Hero() {
               style={{ color: "var(--texte-secondaire)" }}
             >
               Je vous accompagne à travers une approche holistique prenant en compte le corps, 
-              l&apos;esprit, les émotions et l&apos;énergie, dans une profonde bienveillance et écoute de l&apos;âme.
+              l&apos;esprit, les émotions et l&apos;énergie, dans une profonde bienveillance, 
+              écoute en laissant votre corps et votre âme s&apos;exprimer.
             </p>
 
             {/* CTA Buttons */}
@@ -164,7 +165,7 @@ export default function Hero() {
                 Dorothée Duret
               </p>
               <p className="text-white/90 text-sm">
-                Énergéticienne & Naturopathe certifiée
+                Énergéticienne & Naturopathe
               </p>
             </div>
           </div>
