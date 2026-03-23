@@ -359,61 +359,126 @@ export default function AboutPage() {
             <div className="section-divider" />
           </div>
 
-          <div
-            className="rounded-3xl p-10 text-center"
-            style={{
-              background: "white",
-              boxShadow: "0 10px 40px rgba(183, 116, 88, 0.1)",
-            }}
-          >
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Martagny */}
             <div
-              className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+              className="rounded-3xl p-8 text-center"
               style={{
-                background: "linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%)",
+                background: "white",
+                boxShadow: "0 10px 40px rgba(183, 116, 88, 0.1)",
               }}
             >
-              <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h3
-              className="text-2xl font-medium mb-4"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "var(--texte-principal)",
-              }}
-            >
-              Cabinet à Martagny
-            </h3>
-            <p
-              className="text-lg mb-6"
-              style={{ color: "var(--texte-secondaire)" }}
-            >
-              2B rue de la Mare<br />
-              27150 MARTAGNY
-            </p>
-
-            <div
-              className="inline-block px-6 py-3 rounded-full text-sm mb-8"
-              style={{
-                background: "var(--beige-clair)",
-                color: "var(--texte-principal)",
-              }}
-            >
-              <strong>Secteurs desservis :</strong> Gisors, Etrepagny, Gournay en Bray, 
-              Forges les Eaux, Rouen, Beauvais
-            </div>
-
-            <div className="space-y-4">
+              <div
+                className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%)",
+                }}
+              >
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3
+                className="text-2xl font-medium mb-3"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--texte-principal)",
+                }}
+              >
+                Cabinet — Martagny
+              </h3>
               <p
-                className="text-lg"
+                className="text-base mb-4"
                 style={{ color: "var(--texte-secondaire)" }}
               >
-                Les séances peuvent également se dérouler <strong>à distance</strong>{" "}
-                (visioconférence pour la naturopathie, distance pour les soins énergétiques).
+                2B rue de la Mare<br />
+                27150 MARTAGNY
+              </p>
+              <div
+                className="inline-block px-4 py-2 rounded-full text-xs"
+                style={{
+                  background: "var(--beige-clair)",
+                  color: "var(--texte-principal)",
+                }}
+              >
+                Secteurs : Gisors, Etrepagny, Gournay en Bray, 
+                Forges les Eaux, Rouen, Beauvais
+              </div>
+            </div>
+
+            {/* Nanterre */}
+            <div
+              className="rounded-3xl p-8 text-center"
+              style={{
+                background: "white",
+                boxShadow: "0 10px 40px rgba(90, 107, 79, 0.1)",
+              }}
+            >
+              <div
+                className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, var(--vert-sauge) 0%, var(--vert-olive) 100%)",
+                }}
+              >
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3
+                className="text-2xl font-medium mb-3"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--texte-principal)",
+                }}
+              >
+                Consultations — Nanterre
+              </h3>
+              <p
+                className="text-base mb-2"
+                style={{ color: "var(--texte-secondaire)" }}
+              >
+                26 Av. Vladimir Ilitch Lénine<br />
+                92000 Nanterre
+              </p>
+              <div
+                className="inline-block px-4 py-2 rounded-full text-xs font-medium mb-4"
+                style={{
+                  background: "var(--beige-clair)",
+                  color: "var(--vert-olive)",
+                }}
+              >
+                Le lundi uniquement
+              </div>
+              <p
+                className="text-xs italic"
+                style={{ color: "var(--texte-secondaire)" }}
+              >
+                Pour toute demande de consultation sur un autre créneau que le lundi 
+                à Nanterre, je vous invite à{" "}
+                <Link href="/contact" className="underline" style={{ color: "var(--terracotta)" }}>
+                  me contacter
+                </Link>.
               </p>
             </div>
+          </div>
+
+          {/* Distance info */}
+          <div
+            className="mt-8 rounded-2xl p-6 text-center"
+            style={{
+              background: "white",
+              boxShadow: "0 4px 20px rgba(183, 116, 88, 0.06)",
+            }}
+          >
+            <p
+              className="text-base"
+              style={{ color: "var(--texte-secondaire)" }}
+            >
+              Les séances peuvent également se dérouler <strong>à distance</strong>{" "}
+              (visioconférence pour la naturopathie, distance pour les soins énergétiques).
+            </p>
           </div>
         </div>
       </section>

@@ -106,7 +106,7 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-white font-medium mb-1">Adresse</h3>
+                      <h3 className="text-white font-medium mb-1">Cabinet — Martagny</h3>
                       <p className="text-white/80">
                         2B rue de la Mare<br />
                         27150 MARTAGNY
@@ -114,6 +114,17 @@ export default function ContactPage() {
                       <p className="text-white/60 text-sm mt-2">
                         Secteurs : Gisors, Etrepagny, Gournay en Bray, 
                         Forges les Eaux, Rouen, Beauvais
+                      </p>
+                      <h3 className="text-white font-medium mb-1 mt-4">Consultations — Nanterre</h3>
+                      <p className="text-white/80">
+                        26 Av. Vladimir Ilitch Lénine<br />
+                        92000 Nanterre
+                      </p>
+                      <p className="text-white/60 text-sm mt-1">
+                        Le lundi uniquement
+                      </p>
+                      <p className="text-white/50 text-xs mt-1 italic">
+                        Pour toute demande de consultation sur un autre créneau que le lundi à Nanterre, je vous invite à me contacter.
                       </p>
                     </div>
                   </div>
@@ -130,10 +141,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-white font-medium mb-1">Téléphone</h3>
                       <a
-                        href="tel:0611030695"
+                        href="tel:0672274589"
                         className="text-white/80 hover:text-white transition-colors"
                       >
-                        06 11 03 06 95
+                        06 72 27 45 89
                       </a>
                     </div>
                   </div>
@@ -150,10 +161,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-white font-medium mb-1">Email</h3>
                       <a
-                        href="mailto:dorotheeduret78@gmail.com"
+                        href="mailto:lexpressiondelame@gmail.com"
                         className="text-white/80 hover:text-white transition-colors break-all"
                       >
-                        dorotheeduret78@gmail.com
+                        lexpressiondelame@gmail.com
                       </a>
                     </div>
                   </div>
