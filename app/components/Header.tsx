@@ -18,6 +18,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   const navLinks = [
     { href: "/", label: "Accueil" },
     { href: "/services", label: "Services" },
@@ -78,23 +82,40 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-sm font-medium tracking-wide transition-opacity ${
-                  pathname === link.href
-                    ? "opacity-100"
-                    : "opacity-70 hover:opacity-100"
-                }`}
-                style={{ color: "var(--texte-principal)" }}
+                className="relative text-sm font-medium tracking-wide transition-all group"
+                style={{
+                  color: pathname === link.href
+                    ? "var(--terracotta)"
+                    : "var(--texte-principal)",
+                  opacity: pathname === link.href ? 1 : 0.7,
+                }}
               >
                 {link.label}
-                {pathname === link.href && (
-                  <span
-                    className="absolute -bottom-1 left-0 w-full h-0.5"
-                    style={{ background: "var(--terracotta)" }}
-                  />
-                )}
+                <span
+                  className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300"
+                  style={{
+                    background: "var(--terracotta)",
+                    width: pathname === link.href ? "100%" : "0%",
+                  }}
+                />
+                <span
+                  className="absolute -bottom-1 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300"
+                  style={{
+                    background: "var(--terracotta)",
+                    opacity: pathname === link.href ? 0 : 0.5,
+                  }}
+                />
               </Link>
             ))}
-            <Link href="/reservation" className="btn-primary text-sm py-2 px-5">
+            <Link
+              href="/reservation"
+              className="btn-primary text-sm py-2 px-5"
+              style={{
+                background: pathname === "/reservation"
+                  ? "var(--terracotta-dark)"
+                  : undefined,
+              }}
+            >
               Réserver
             </Link>
           </div>
@@ -142,11 +163,16 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block py-3 text-center font-medium ${
-                  pathname === link.href ? "opacity-100" : "opacity-70"
-                }`}
-                style={{ color: "var(--texte-principal)" }}
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-3 text-center font-medium transition-colors"
+                style={{
+                  color: pathname === link.href
+                    ? "var(--terracotta)"
+                    : "var(--texte-principal)",
+                  opacity: pathname === link.href ? 1 : 0.7,
+                  borderLeft: pathname === link.href
+                    ? "3px solid var(--terracotta)"
+                    : "3px solid transparent",
+                }}
               >
                 {link.label}
               </Link>
@@ -154,7 +180,6 @@ export default function Header() {
             <Link
               href="/reservation"
               className="btn-primary block text-center mt-4"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Réserver
             </Link>
