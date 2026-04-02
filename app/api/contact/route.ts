@@ -5,6 +5,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const OWNER_EMAIL = "lexpressiondelame@gmail.com";
 
+// Tant que le domaine lexpressiondelame.fr n'est pas vérifié dans Resend,
+// utiliser l'adresse par défaut. Une fois vérifié, remplacer par :
+// const FROM_EMAIL = "L'Expression de l'Âme <contact@lexpressiondelame.fr>";
+const FROM_EMAIL = "L'Expression de l'Âme <onboarding@resend.dev>";
+
 const TYPE_LABELS: Record<string, string> = {
   "soin-energetique": "Soin Énergétique",
   naturopathie: "Naturopathie",
@@ -30,7 +35,7 @@ export async function POST(request: Request) {
 
     // Email de notification pour Dorothée
     await resend.emails.send({
-      from: "L'Expression de l'Âme <contact@lexpressiondelame.fr>",
+      from: FROM_EMAIL,
       to: OWNER_EMAIL,
       subject: `Nouveau message de ${nom} — ${typeLabel}`,
       replyTo: email,
@@ -73,7 +78,7 @@ export async function POST(request: Request) {
 
     // Email de confirmation pour le visiteur
     await resend.emails.send({
-      from: "L'Expression de l'Âme <contact@lexpressiondelame.fr>",
+      from: FROM_EMAIL,
       to: email,
       subject: "Votre message a bien été reçu — L'Expression de l'Âme",
       html: `
