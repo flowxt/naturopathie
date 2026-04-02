@@ -2,6 +2,7 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -12,22 +13,40 @@ export default function ContactPage() {
     type: "soin-energetique",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Pour le moment, on affiche juste les données dans la console
-    // Plus tard, vous pourrez intégrer un système d'envoi d'email
-    console.log("Formulaire soumis:", formData);
-    alert("Merci pour votre message ! Je vous répondrai dans les plus brefs délais.");
-    
-    // Reset form
-    setFormData({
-      nom: "",
-      email: "",
-      telephone: "",
-      type: "soin-energetique",
-      message: "",
-    });
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Une erreur est survenue.");
+      }
+
+      setStatus("success");
+      setFormData({
+        nom: "",
+        email: "",
+        telephone: "",
+        type: "soin-energetique",
+        message: "",
+      });
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Une erreur est survenue."
+      );
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -97,7 +116,7 @@ export default function ContactPage() {
                 <div className="space-y-6 mb-10">
                   <div className="flex items-start gap-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(255, 255, 255, 0.2)" }}
                     >
                       <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,7 +150,7 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(255, 255, 255, 0.2)" }}
                     >
                       <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -151,7 +170,7 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(255, 255, 255, 0.2)" }}
                     >
                       <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +190,7 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-4">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(255, 255, 255, 0.2)" }}
                     >
                       <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -188,9 +207,10 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Calendly placeholder */}
-                <div
-                  className="p-6 rounded-2xl text-center"
+                {/* Reservation link */}
+                <Link
+                  href="/reservation"
+                  className="block p-6 rounded-2xl text-center transition-all hover:scale-[1.02]"
                   style={{ background: "rgba(255, 255, 255, 0.15)" }}
                 >
                   <div className="flex items-center justify-center gap-2 text-white/90 text-sm mb-2">
@@ -200,9 +220,9 @@ export default function ContactPage() {
                     Réservation en ligne
                   </div>
                   <p className="text-white/70 text-xs">
-                    Système de réservation bientôt disponible
+                    Réservez directement votre créneau
                   </p>
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -215,165 +235,241 @@ export default function ContactPage() {
                   boxShadow: "0 10px 40px rgba(183, 116, 88, 0.1)",
                 }}
               >
-                <h2
-                  className="text-3xl font-medium mb-2"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    color: "var(--texte-principal)",
-                  }}
-                >
-                  Envoyez-moi un message
-                </h2>
-                <p
-                  className="text-sm mb-8"
-                  style={{ color: "var(--texte-secondaire)" }}
-                >
-                  Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.
-                </p>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      style={{ color: "var(--texte-principal)" }}
-                      htmlFor="nom"
-                    >
-                      Nom complet *
-                    </label>
-                    <input
-                      type="text"
-                      id="nom"
-                      name="nom"
-                      required
-                      value={formData.nom}
-                      onChange={handleChange}
-                      placeholder="Votre nom"
-                      className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50"
+                {status === "success" ? (
+                  <div className="text-center py-12">
+                    <div
+                      className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
                       style={{
-                        borderColor: "var(--beige-clair)",
-                        background: "var(--creme)",
+                        background: "linear-gradient(135deg, var(--vert-olive) 0%, #6b7a5a 100%)",
                       }}
-                    />
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        className="block text-sm font-medium mb-2"
-                        style={{ color: "var(--texte-principal)" }}
-                        htmlFor="email"
-                      >
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="votre@email.com"
-                        className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50"
-                        style={{
-                          borderColor: "var(--beige-clair)",
-                          background: "var(--creme)",
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        className="block text-sm font-medium mb-2"
-                        style={{ color: "var(--texte-principal)" }}
-                        htmlFor="telephone"
-                      >
-                        Téléphone *
-                      </label>
-                      <input
-                        type="tel"
-                        id="telephone"
-                        name="telephone"
-                        required
-                        value={formData.telephone}
-                        onChange={handleChange}
-                        placeholder="06 00 00 00 00"
-                        className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50"
-                        style={{
-                          borderColor: "var(--beige-clair)",
-                          background: "var(--creme)",
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      style={{ color: "var(--texte-principal)" }}
-                      htmlFor="type"
                     >
-                      Type de séance souhaitée *
-                    </label>
-                    <select
-                      id="type"
-                      name="type"
-                      required
-                      value={formData.type}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50"
+                      <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h2
+                      className="text-3xl font-medium mb-4"
                       style={{
-                        borderColor: "var(--beige-clair)",
-                        background: "var(--creme)",
+                        fontFamily: "'Cormorant Garamond', serif",
                         color: "var(--texte-principal)",
                       }}
                     >
-                      <option value="soin-energetique">Soin Énergétique</option>
-                      <option value="naturopathie">Naturopathie</option>
-                      <option value="enfant">Soin Enfant</option>
-                      <option value="forfait-adulte">Forfait 5 Soins Adultes</option>
-                      <option value="forfait-enfant">Forfait 5 Soins Enfants</option>
-                      <option value="question">Simple question</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      style={{ color: "var(--texte-principal)" }}
-                      htmlFor="message"
+                      Message envoyé
+                    </h2>
+                    <p
+                      className="text-lg mb-2"
+                      style={{ color: "var(--texte-secondaire)" }}
                     >
-                      Votre message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Décrivez brièvement votre demande ou vos attentes..."
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors resize-none focus:border-opacity-50"
-                      style={{
-                        borderColor: "var(--beige-clair)",
-                        background: "var(--creme)",
-                      }}
-                    />
+                      Merci pour votre message ! Un email de confirmation vous a été envoyé.
+                    </p>
+                    <p
+                      className="text-sm mb-8"
+                      style={{ color: "var(--texte-secondaire)" }}
+                    >
+                      Je vous répondrai dans les plus brefs délais.
+                    </p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="btn-secondary text-sm"
+                    >
+                      Envoyer un autre message
+                    </button>
                   </div>
+                ) : (
+                  <>
+                    <h2
+                      className="text-3xl font-medium mb-2"
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "var(--texte-principal)",
+                      }}
+                    >
+                      Envoyez-moi un message
+                    </h2>
+                    <p
+                      className="text-sm mb-8"
+                      style={{ color: "var(--texte-secondaire)" }}
+                    >
+                      Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.
+                    </p>
 
-                  <button
-                    type="submit"
-                    className="w-full btn-primary text-lg py-4"
-                  >
-                    Envoyer le message
-                  </button>
+                    {status === "error" && (
+                      <div
+                        className="mb-6 p-4 rounded-xl text-sm flex items-center gap-3"
+                        style={{
+                          background: "#fef2f2",
+                          color: "#b91c1c",
+                          border: "1px solid #fecaca",
+                        }}
+                      >
+                        <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {errorMessage}
+                      </div>
+                    )}
 
-                  <p
-                    className="text-xs text-center"
-                    style={{ color: "var(--texte-secondaire)" }}
-                  >
-                    * Champs obligatoires — Vos données sont confidentielles et ne seront jamais partagées.
-                  </p>
-                </form>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div>
+                        <label
+                          className="block text-sm font-medium mb-2"
+                          style={{ color: "var(--texte-principal)" }}
+                          htmlFor="nom"
+                        >
+                          Nom complet *
+                        </label>
+                        <input
+                          type="text"
+                          id="nom"
+                          name="nom"
+                          required
+                          value={formData.nom}
+                          onChange={handleChange}
+                          placeholder="Votre nom"
+                          disabled={status === "loading"}
+                          className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50 disabled:opacity-50"
+                          style={{
+                            borderColor: "var(--beige-clair)",
+                            background: "var(--creme)",
+                          }}
+                        />
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-6">
+                        <div>
+                          <label
+                            className="block text-sm font-medium mb-2"
+                            style={{ color: "var(--texte-principal)" }}
+                            htmlFor="email"
+                          >
+                            Email *
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="votre@email.com"
+                            disabled={status === "loading"}
+                            className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50 disabled:opacity-50"
+                            style={{
+                              borderColor: "var(--beige-clair)",
+                              background: "var(--creme)",
+                            }}
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            className="block text-sm font-medium mb-2"
+                            style={{ color: "var(--texte-principal)" }}
+                            htmlFor="telephone"
+                          >
+                            Téléphone *
+                          </label>
+                          <input
+                            type="tel"
+                            id="telephone"
+                            name="telephone"
+                            required
+                            value={formData.telephone}
+                            onChange={handleChange}
+                            placeholder="06 00 00 00 00"
+                            disabled={status === "loading"}
+                            className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50 disabled:opacity-50"
+                            style={{
+                              borderColor: "var(--beige-clair)",
+                              background: "var(--creme)",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label
+                          className="block text-sm font-medium mb-2"
+                          style={{ color: "var(--texte-principal)" }}
+                          htmlFor="type"
+                        >
+                          Type de séance souhaitée *
+                        </label>
+                        <select
+                          id="type"
+                          name="type"
+                          required
+                          value={formData.type}
+                          onChange={handleChange}
+                          disabled={status === "loading"}
+                          className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors focus:border-opacity-50 disabled:opacity-50"
+                          style={{
+                            borderColor: "var(--beige-clair)",
+                            background: "var(--creme)",
+                            color: "var(--texte-principal)",
+                          }}
+                        >
+                          <option value="soin-energetique">Soin Énergétique</option>
+                          <option value="naturopathie">Naturopathie</option>
+                          <option value="enfant">Soin Enfant</option>
+                          <option value="forfait-adulte">Forfait 5 Soins Adultes</option>
+                          <option value="forfait-enfant">Forfait 5 Soins Enfants</option>
+                          <option value="question">Simple question</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label
+                          className="block text-sm font-medium mb-2"
+                          style={{ color: "var(--texte-principal)" }}
+                          htmlFor="message"
+                        >
+                          Votre message *
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          required
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Décrivez brièvement votre demande ou vos attentes..."
+                          rows={6}
+                          disabled={status === "loading"}
+                          className="w-full px-4 py-3 rounded-xl border-2 outline-none transition-colors resize-none focus:border-opacity-50 disabled:opacity-50"
+                          style={{
+                            borderColor: "var(--beige-clair)",
+                            background: "var(--creme)",
+                          }}
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={status === "loading"}
+                        className="w-full btn-primary text-lg py-4 disabled:opacity-70 flex items-center justify-center gap-3"
+                      >
+                        {status === "loading" ? (
+                          <>
+                            <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                            Envoi en cours...
+                          </>
+                        ) : (
+                          "Envoyer le message"
+                        )}
+                      </button>
+
+                      <p
+                        className="text-xs text-center"
+                        style={{ color: "var(--texte-secondaire)" }}
+                      >
+                        * Champs obligatoires — Vos données sont confidentielles et ne seront jamais partagées.
+                      </p>
+                    </form>
+                  </>
+                )}
               </div>
             </div>
           </div>
