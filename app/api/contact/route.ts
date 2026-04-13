@@ -96,7 +96,7 @@ export async function POST(request: Request) {
               Si vous souhaitez réserver un créneau dès maintenant, vous pouvez le faire directement en ligne :
             </p>
             <div style="text-align: center; margin: 24px 0;">
-              <a href="https://calendly.com/lexpressiondelame" style="display: inline-block; background: linear-gradient(135deg, #b77458 0%, #9a5f47 100%); color: white; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-size: 15px;">
+              <a href="https://cal.com/dorothee-sakgbk" style="display: inline-block; background: linear-gradient(135deg, #b77458 0%, #9a5f47 100%); color: white; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-size: 15px;">
                 Réserver en ligne
               </a>
             </div>

@@ -3,13 +3,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const CALENDLY_BASE = "https://calendly.com/lexpressiondelame";
+const CAL_BASE = "https://cal.com/dorothee-sakgbk";
 
 export default function ReservationPage() {
   const prestations = [
     {
       id: "soin-energetique",
-      calendlySlug: "/soin-energetique",
+      slug: "/soin-energetique",
       title: "Soin Énergétique",
       subtitle: "En présentiel ou à distance",
       price: 70,
@@ -18,7 +18,7 @@ export default function ReservationPage() {
     },
     {
       id: "naturopathie",
-      calendlySlug: "/naturopathie",
+      slug: "/naturopathie",
       title: "Naturopathie",
       subtitle: "En visioconférence ou en présentiel",
       price: 70,
@@ -27,7 +27,7 @@ export default function ReservationPage() {
     },
     {
       id: "soin-enfant",
-      calendlySlug: "/soin-enfant",
+      slug: "/soin-enfant-de-12-ans",
       title: "Soin Enfant",
       subtitle: "Moins de 12 ans",
       price: 50,
@@ -36,7 +36,7 @@ export default function ReservationPage() {
     },
     {
       id: "forfait-5-adulte",
-      calendlySlug: "/forfait-5-soins-adulte",
+      slug: "/15min",
       title: "Forfait 5 Soins",
       subtitle: "Adultes",
       price: 300,
@@ -46,7 +46,7 @@ export default function ReservationPage() {
     },
     {
       id: "forfait-5-enfant",
-      calendlySlug: "/forfait-5-soins-enfant",
+      slug: "/15min",
       title: "Forfait 5 Soins",
       subtitle: "Enfants",
       price: 200,
@@ -175,9 +175,8 @@ export default function ReservationPage() {
                     </span>
                   </div>
 
-                  {/* Bouton Réserver directement dans la carte */}
                   <a
-                    href={`${CALENDLY_BASE}${prestation.calendlySlug}`}
+                    href={`${CAL_BASE}${prestation.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 rounded-full font-medium text-center transition-all hover:scale-[1.02] inline-flex items-center justify-center gap-2"
@@ -211,10 +210,10 @@ export default function ReservationPage() {
             Règlement sur place le jour de votre séance
           </div>
 
-          {/* Direct Calendly link */}
+          {/* Direct Cal.com link */}
           <div className="mt-6 text-center">
             <a
-              href={CALENDLY_BASE}
+              href={CAL_BASE}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm inline-flex items-center gap-1 transition-opacity hover:opacity-70"
@@ -223,7 +222,7 @@ export default function ReservationPage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-              Voir toutes les disponibilités sur Calendly
+              Voir toutes les disponibilités sur Cal.com
             </a>
           </div>
         </div>
