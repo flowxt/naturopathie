@@ -5,8 +5,12 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "À propos | Dorothée Duret - Énergéticienne & Naturopathe",
-  description: "Découvrez mon parcours et ma mission : vous accompagner avec bienveillance vers plus d'équilibre, de vitalité et d'harmonie intérieure.",
+  title: "À propos — Dorothée, Énergéticienne & Naturopathe",
+  description:
+    "Découvrez le parcours de Dorothée, énergéticienne et naturopathe. Sa mission : vous accompagner avec bienveillance vers l'équilibre, la vitalité et l'harmonie intérieure.",
+  alternates: {
+    canonical: "https://lexpressiondelame.fr/a-propos",
+  },
 };
 
 export default function AboutPage() {

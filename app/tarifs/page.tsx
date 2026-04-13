@@ -4,8 +4,12 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tarifs | Soins Énergétiques & Naturopathie",
-  description: "Découvrez mes tarifs pour les soins énergétiques, la naturopathie et les forfaits. Séances adultes 70€, enfants 50€. Forfaits avantageux disponibles.",
+  title: "Tarifs",
+  description:
+    "Tarifs des soins énergétiques et de naturopathie : séances adultes 70€, enfants 50€, forfaits 5 séances avantageux. Règlement sur place.",
+  alternates: {
+    canonical: "https://lexpressiondelame.fr/tarifs",
+  },
 };
 
 export default function TarifsPage() {

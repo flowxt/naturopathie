@@ -4,8 +4,12 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | Conseils Bien-être & Naturopathie",
-  description: "Découvrez mes articles sur la naturopathie, les soins énergétiques et le bien-être naturel.",
+  title: "Blog — Conseils Bien-être & Naturopathie",
+  description:
+    "Articles et conseils sur la naturopathie, les soins énergétiques et le bien-être naturel. Astuces pour retrouver équilibre et vitalité au quotidien.",
+  alternates: {
+    canonical: "https://lexpressiondelame.fr/blog",
+  },
 };
 
 export default function BlogPage() {

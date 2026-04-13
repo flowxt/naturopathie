@@ -5,8 +5,12 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | Soins Énergétiques & Naturopathie",
-  description: "Découvrez mes services : soins énergétiques, naturopathie et accompagnement holistique. En présentiel à Martagny ou à distance.",
+  title: "Services",
+  description:
+    "Découvrez mes services : soins énergétiques, naturopathie et accompagnement holistique personnalisé. En présentiel à Martagny, Nanterre ou à distance.",
+  alternates: {
+    canonical: "https://lexpressiondelame.fr/services",
+  },
 };
 
 export default function ServicesPage() {
