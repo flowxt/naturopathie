@@ -167,7 +167,7 @@ export default function BlogPage() {
                   className="text-2xl font-medium mb-3"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
-                  Restez informée
+                  Restez informé
                 </h3>
                 <p className="text-white/90 mb-6">
                   En attendant, n&apos;hésitez pas à me contacter directement pour 

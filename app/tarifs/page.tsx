@@ -505,7 +505,7 @@ export default function TarifsPage() {
               color: "var(--texte-principal)",
             }}
           >
-            Prête à vous accompagner
+            À votre écoute
           </h2>
           <p
             className="text-lg mb-8"

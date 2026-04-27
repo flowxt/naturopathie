@@ -27,7 +27,7 @@ export default function CallToAction() {
           className="text-4xl md:text-5xl font-medium text-white mb-6"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          Prête à commencer votre voyage vers le bien-être ?
+          Envie de commencer votre voyage vers le bien-être ?
         </h2>
         <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
           Réservez votre première séance et entamez ensemble ce chemin vers 

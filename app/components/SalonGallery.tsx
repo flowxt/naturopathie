@@ -65,14 +65,14 @@ export default function SalonGallery() {
                 vous offrir un moment de détente absolue.
               </p>
               <p>
-                Dès votre arrivée, vous serez enveloppée par une atmosphère apaisante 
+                Dès votre arrivée, laissez-vous envelopper par une atmosphère apaisante 
                 aux teintes douces de terracotta et de rose poudré, propice au 
                 lâcher-prise et à la reconnexion avec vous-même.
               </p>
               <p>
                 Chaque détail a été soigneusement choisi pour créer un environnement 
                 où vous vous sentirez en confiance, loin du stress quotidien, 
-                prête à accueillir les bienfaits de votre séance.
+                pour accueillir pleinement les bienfaits de votre séance.
               </p>
             </div>
 
