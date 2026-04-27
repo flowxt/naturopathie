@@ -6,10 +6,21 @@ import Footer from "../components/Footer";
 const CAL_BASE = "https://cal.com/dorothee-sakgbk";
 
 export default function ReservationPage() {
-  const prestations = [
+  const prestations: {
+    id: string;
+    slug: string;
+    slugNoPayment?: string;
+    title: string;
+    subtitle: string;
+    price: number;
+    duration: string;
+    description: string;
+    isPackage?: boolean;
+  }[] = [
     {
       id: "soin-energetique",
       slug: "/soin-energetique",
+      slugNoPayment: "/soin-energetique-sans-paiement",
       title: "Soin Énergétique",
       subtitle: "En présentiel ou à distance",
       price: 70,
@@ -19,6 +30,7 @@ export default function ReservationPage() {
     {
       id: "naturopathie",
       slug: "/naturopathie",
+      slugNoPayment: "/naturopathie-copie",
       title: "Naturopathie",
       subtitle: "En visioconférence ou en présentiel",
       price: 70,
@@ -28,6 +40,7 @@ export default function ReservationPage() {
     {
       id: "soin-enfant",
       slug: "/soin-enfant-de-12-ans",
+      slugNoPayment: "/soin-enfant-de-12-ans-copie",
       title: "Soin Enfant",
       subtitle: "Moins de 12 ans",
       price: 50,
@@ -89,7 +102,7 @@ export default function ReservationPage() {
             style={{ color: "var(--texte-secondaire)" }}
           >
             Choisissez votre prestation et réservez votre créneau en ligne. 
-            Règlement sur place le jour de votre séance.
+            Paiement en ligne sécurisé ou règlement sur place, au choix.
           </p>
         </div>
       </section>
@@ -186,11 +199,50 @@ export default function ReservationPage() {
                       boxShadow: "0 4px 15px rgba(183, 116, 88, 0.3)",
                     }}
                   >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    Réserver
+                    {prestation.isPackage ? (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Réserver un appel de 15 min
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h.01M11 15h2M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Réserver — paiement en ligne
+                      </>
+                    )}
                   </a>
+
+                  {prestation.slugNoPayment && (
+                    <a
+                      href={`${CAL_BASE}${prestation.slugNoPayment}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 mt-3 rounded-full font-medium text-center transition-all hover:scale-[1.02] inline-flex items-center justify-center gap-2 border-2"
+                      style={{
+                        background: "white",
+                        color: "var(--terracotta)",
+                        borderColor: "var(--terracotta)",
+                      }}
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      Réserver — paiement sur place
+                    </a>
+                  )}
+
+                  {prestation.isPackage && (
+                    <p
+                      className="text-xs text-center mt-3"
+                      style={{ color: "var(--texte-secondaire)" }}
+                    >
+                      Cet appel permet de planifier ensemble vos 5 séances. Aucun paiement en ligne, règlement directement avec Dorothée.
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -207,7 +259,7 @@ export default function ReservationPage() {
             <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Règlement sur place le jour de votre séance
+            Paiement en ligne sécurisé par Stripe ou règlement sur place le jour de la séance
           </div>
 
           {/* Direct Cal.com link */}
@@ -237,8 +289,8 @@ export default function ReservationPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Paiement sur place",
-                description: "Le règlement s'effectue le jour de votre séance, directement au cabinet",
+                title: "Paiement au choix",
+                description: "Réglez en ligne en toute sécurité via Stripe, ou directement sur place le jour de la séance",
               },
               {
                 title: "Annulation flexible",

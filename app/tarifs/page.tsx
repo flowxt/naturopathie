@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tarifs",
   description:
-    "Tarifs des soins énergétiques et de naturopathie : séances adultes 70€, enfants 50€, forfaits 5 séances avantageux. Règlement sur place.",
+    "Tarifs des soins énergétiques et de naturopathie : séances adultes 70€, enfants 50€, forfaits 5 séances avantageux. Paiement en ligne ou sur place.",
   alternates: {
     canonical: "https://lexpressiondelame.fr/tarifs",
   },
